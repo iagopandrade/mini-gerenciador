@@ -6,14 +6,15 @@
 #include "utils.h"
 
 int main(int argc, char *argv[]) {
+	char cmd[50];
+		
 	setlocale(LC_ALL, "Portuguese");	
 	
-	char cmd[50];
-	printf("Gerenciador de Arquivos\n");	
-	printf("Digite 'ajuda' para ver a lista de comandos\n");
+	system("cd");
+	printf("Gerenciador de Arquivos\n\n");		
 	printf("Comandos adicionados:\n");		
-	printf("\t - read <arquivo.txt>\n");	
-	printf("\t - sair\n>> ");			
+	printf("- ler [nome do arquivo]\n");	
+	printf("- sair\n> ");			
 	
 	// Cria um laço infinito, saindo apenas com o comando 'sair'
 	while (1) {

@@ -5,16 +5,15 @@
 #include "utils.h"
 
 int CommandText(char cmdtext[], int tam) {
+	char *arg;
 	
 	// Remove o "\n" que a função fgets() colocou
 	cmdtext[strcspn(cmdtext, "\n")] = 0;
 	
-    char *arg;
-	
 	// Separa o argumento do comando (Comando: read; argumento: arquivo.txt)
     arg = strtok(cmdtext, " ");	
 	
-	if (strcmp(cmdtext, "read") == 0) {
+	if (strcmp(cmdtext, "ler") == 0) {
 		arg = strtok(NULL, " ");
 		
 		// Condição para verificar formatação (Está bugada)
@@ -32,8 +31,10 @@ int CommandText(char cmdtext[], int tam) {
 		Exit();  
 	} 	
 	
-	else 
-		printf("'%s' não é reconhecido como um comando do gerenciador.\n>> ", cmdtext);
+	else {
+		printf("'%s' comando não encontrado\n> ", cmdtext);
+	}
+
 }
 
 int ReadFile(char nameFile[], int tam) {
