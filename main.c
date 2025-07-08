@@ -8,18 +8,22 @@
 int main(int argc, char *argv[]) {
 	setlocale(LC_ALL, "Portuguese");	
 	
-	char cmd[10];
-	//printf("Gerenciador de Arquivos\n");	
-	//printf("Digite 'ajuda' para ver a lista de comandos\n");	
-		
-	printf("Primeiro comando: 'teste'\n>> ");	
-			
-	// Limpa o buffer do teclado
-	setbuf(stdin, NULL);
-	fgets(cmd, sizeof(cmd), stdin);	
+	char cmd[50];
+	printf("Gerenciador de Arquivos\n");	
+	printf("Digite 'ajuda' para ver a lista de comandos\n");
+	printf("Comandos adicionados:\n");		
+	printf("\t - read <arquivo.txt>\n");	
+	printf("\t - sair\n>> ");			
 	
-	CommandText(cmd, sizeof(cmd));
-			
-	system("pause");
+	// Cria um laço infinito, saindo apenas com o comando 'sair'
+	while (1) {
+		
+		// Limpa o buffer do teclado
+		setbuf(stdin, NULL);
+		fgets(cmd, sizeof(cmd), stdin);	
+	
+		CommandText(cmd, sizeof(cmd));		
+	}
+	
 	return 0;
 }
