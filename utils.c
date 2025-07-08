@@ -36,20 +36,27 @@ int CommandText(char cmdtext[], int tam) {
 		printf("'%s' não é reconhecido como um comando do gerenciador.\n>> ", cmdtext);
 }
 
-// função para ler arquivos (Incompleto)
 int ReadFile(char nameFile[], int tam) {
-	FILE *fp;
+	FILE *file;	
+	file = fopen(nameFile, "r");
+	char fileContent[100];
 	
-	fp = fopen(nameFile, "a");
-							
-	while (fp == NULL) {
-			printf("read 'nomedoarquivo.txt'\n", nameFile);		
-			fp = fopen(nameFile, "a");
-			return 1;
-		}
+	// Verifica se o usuário digitou o nome do arquivo
+	if (nameFile == NULL) {
+		printf("Digite: read [nomedoarquivo.txt]\n", nameFile);		
+		file = fopen(nameFile, "r");
+		return 1;
+	// Verifica se o arquivo existe
+	} if (file == NULL) {	
+		printf("'%s' não existe.\n", nameFile);		
+		file = fopen(nameFile, "r");
+		return 1;
+	}
 		
-		printf("'%s' foi aberto\n", nameFile);			
-		return 0;
+	printf("O arquivo'%s' foi aberto\n", nameFile);	
+	fscanf(file, "%s", fileContent);
+	printf("%s\n", fileContent);		
+	return 0;
 }
 
 int Exit(void) {
