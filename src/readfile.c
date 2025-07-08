@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include "utils.h"
@@ -8,8 +7,10 @@ int ReadFile(char nameFile[], int tam) {
 	// Variáveis de arquivos
 	FILE *file;	
 	file = fopen(nameFile, "r");
-	// Variávei para armazenar o conteúdo dos arquivos
+	
+	// Variáveil para armazenar o conteúdo dos arquivos
 	char fileContent[100];
+	char *ReturnContent = fileContent;
 	
 	// Verifica se o usuário digitou o nome do arquivo
 	if (nameFile == NULL) 
