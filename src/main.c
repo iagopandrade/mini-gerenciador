@@ -17,13 +17,12 @@ int main(int argc, char *argv[]) {
 	printf("- sair\n> ");			
 	
 	// Cria um laço infinito, saindo apenas com o comando 'sair'
-	while (1) {
-		
+	while (1) {		
 		// Limpa o buffer do teclado
 		setbuf(stdin, NULL);
 		fgets(cmd, sizeof(cmd), stdin);	
 	
-		CommandText(cmd, sizeof(cmd));		
+		CommandText(cmd, sizeof(cmd));	
 	}
 	
 	return 0;
