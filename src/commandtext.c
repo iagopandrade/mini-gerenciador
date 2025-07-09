@@ -4,9 +4,7 @@
 #include "utils.h"
 
 int CommandText(char cmdtext[], int tam) {
-	char *arg;
-	// Teste
-	int retorno;
+	char *arg = NULL;
 	
 	// Remove o "\n" que a função fgets() colocou
 	cmdtext[strcspn(cmdtext, "\n")] = 0;
@@ -17,21 +15,22 @@ int CommandText(char cmdtext[], int tam) {
 	if (strcmp(cmdtext, "ler") == 0) {
 		arg = strtok(NULL, " ");
 		
-		retorno = ReadFile(arg, sizeof(arg)); 
-		if(retorno == 1) {
-			printf("DEBUG :retorno %d\n", retorno);
-			printf("Digite: read [nomedoarquivo.txt]\n");		
-			//file = fopen(arg, "r");
-			return 1;
-		} if (retorno == 2) {
-			printf("'%s' não existe.\n", arg);		
-			//file = fopen(arg, "r");
-			return 1;
-		} 
+		// Variável para armazenar o retorno da função
+		int functionResult = NULL;
+
+		functionResult = ReadFile(arg, sizeof(arg)); 
 		
-		//debug
-		printf("\n\n\nAbriu?\n\n\n");
-		return 0; 	
+		if(functionResult != 0) {
+			if(functionResult == 1) {
+				printf("Digite: ler [nomedoarquivo.txt]\n");		
+				//file = fopen(arg, "r");		
+			} if (functionResult > 1) {
+				printf("O arquivo '%s' não existe.\n", arg);		
+				//file = fopen(arg, "r");
+			}			
+		} // else printf("O arquivo '%s' foi aberto.\n", arg);	 	
+	
+	return 1;	
 	} 
 	
 	if (strcmp(cmdtext, "sair") == 0) {		
@@ -39,7 +38,8 @@ int CommandText(char cmdtext[], int tam) {
 	} 	
 	
 	else {
-		printf("'%s' comando não encontrado\n> ", cmdtext);
+		printf("O comando '%s' não foi encontrado\n> ", cmdtext);
 	}
-
+	
+	return 0;
 }
