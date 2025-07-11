@@ -1,9 +1,9 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-int CommandText(char [], int);
-int ReadFile(char [], int);
-int CreateFile(char [], int);
-int Exit(void);
+int command_text ( char [], int );
+int read_file ( char [], int );
+int create_file( char [], int );
+// int Exit ( void );
 
 #endif

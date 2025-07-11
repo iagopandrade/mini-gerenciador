@@ -11,23 +11,34 @@
  * @return int Retorna 1 se não receber parâmetro, 2 caso o parâmetro seja inválido.
  *
  */
-int ReadFile(char nameFile[], int tam) {
+int read_file ( char nameFile[], int tam ) {
 	FILE *file = fopen(nameFile, "r");
-	char fileContent;
-
+	
 	if (nameFile == NULL) return 1;
 
 	if (file == NULL) return 2;
 	else {
+		char fileContent;
+		
+		printf("\n");
 		printf("Arquivo '%s'\n", nameFile);
-		printf("------------------------------------------------------------\n");
-		while ((fileContent = fgetc(file)) != EOF)
+		printf("\t----------------------------------------------------------------------------------------------------------------\n");
+		int i = 1;
+		printf("\t%d. ", i);
+		while ((fileContent = fgetc(file)) != EOF) {
+			if (fileContent == '\n') {
+				i++;
+				fileContent = 0;
+				printf("\n\t%d. ", i);			
+			}
 			putchar(fileContent);
+		}
 
 		fclose(file);
 
-		printf("\n------------------------------------------------------------");
-		printf("\n\n\nArquivo '%s' foi fechado", nameFile);
+		printf("\n\t----------------------------------------------------------------------------------------------------------------\n");
+		printf("%d linhas\n", i); i = 0;
+		printf("Arquivo '%s' foi fechado", nameFile);
 		printf("\n\n > ");
 	}
 	return 0;

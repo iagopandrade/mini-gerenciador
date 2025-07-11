@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "utils.h"
 
 /**
@@ -13,12 +14,8 @@
  * @return int Retorna 1 se o comando for executado.
  *
  */
-int CommandText(char cmdtext[], int tam)
-{
+int command_text (char cmdtext[], int tam ) {
 	char *arg = NULL;
-
-	// Variável para armazenar o retorno da função
-	int functionResult = NULL;
 
 	// Remove o "\n" que a função fgets() colocou
 	cmdtext[strcspn(cmdtext, "\n")] = 0;
@@ -27,16 +24,37 @@ int CommandText(char cmdtext[], int tam)
 	arg = strtok(cmdtext, " ");
 
 	if (strcmp(cmdtext, "ler") == 0) {
+	    
+		int status = 0;
 		arg = strtok(NULL, " ");
 
-		functionResult = ReadFile(arg, sizeof(arg));
+		status = read_file(arg, strlen(arg));
 
-		if (functionResult != 0) {
-			if (functionResult == 1) {
+		if (status != 0) {
+			if (status == 1) {
 				printf("Digite: ler[nomedoarquivo.txt]\n > ");
 			}
 
-			if (functionResult > 1) {
+			if (status > 1) {
+				printf("O arquivo '%s' não existe.\n > ", arg);
+			}
+		}
+		return 1;
+	}
+	
+	if (strcmp(cmdtext, "criar") == 0) {
+	    
+		int status = 0;
+		arg = strtok(NULL, " ");
+
+		status = read_file(arg, strlen(arg));
+
+		if (status != 0) {
+			if (status == 1) {
+				printf("Digite: ler[nomedoarquivo.txt]\n > ");
+			}
+
+			if (status > 1) {
 				printf("O arquivo '%s' não existe.\n > ", arg);
 			}
 		}
@@ -44,7 +62,8 @@ int CommandText(char cmdtext[], int tam)
 	}
 
 	if (strcmp(cmdtext, "sair") == 0) {
-		Exit();
+		printf("Programa encerrado.\n");
+		exit(0);
 	}
 
 	if (strcmp(cmdtext, "cls") == 0) {
