@@ -53,6 +53,7 @@ int CommandText(char cmdtext[], int tam)
 	}
 	
 	else {
-		printf("O comando '%s' não foi encontrado\n > ", cmdtext);
+		printf("O comando '%s' não existe!", cmdtext);
+		printf("\n\n > ");
 	}
 }

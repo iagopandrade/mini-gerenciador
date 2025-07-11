@@ -27,7 +27,8 @@ int ReadFile(char nameFile[], int tam) {
 		fclose(file);
 
 		printf("\n------------------------------------------------------------");
-		printf("\n\n\nArquivo '%s' foi fechado\n > ", nameFile);
+		printf("\n\n\nArquivo '%s' foi fechado", nameFile);
+		printf("\n\n > ");
 	}
 	return 0;
 }

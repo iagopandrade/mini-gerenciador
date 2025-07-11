@@ -9,12 +9,13 @@ int main(int argc, char *argv[])
 	char cmd[50];
 
 	setlocale(LC_ALL, "Portuguese");
-
-	system("cd");
+	
 	printf("Gerenciador de Arquivos\n\n");
 	printf("Comandos adicionados:\n");
 	printf("- ler[nome do arquivo]\n");
-	printf("- sair\n > ");
+	printf("- sair\n");
+	system("cd");
+	printf(" > ");
 
 	// Cria um laço infinito, saindo apenas com o comando 'sair'
 	while (1) {
