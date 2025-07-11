@@ -5,4 +5,4 @@
  * https://www.piskelapp.com/p/create/sprite/
  *
  */
-IDI_ICON1 ICON "resources/minigerenciador.ico"
+IDI_ICON1 ICON "src/resources/minigerenciador.ico"

@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <locale.h>
-#include "utils.h"
+#include "src/utils.h"
 
 int main(int argc, char *argv[])
 {

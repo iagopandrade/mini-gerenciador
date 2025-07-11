@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=6
+UnitCount=7
 
 [VersionInfo]
 Major=1
@@ -39,29 +39,29 @@ Build=0
 LanguageID=1033
 CharsetID=1252
 CompanyName=
-FileVersion=
+FileVersion=1.0.0.0
 FileDescription=Developed using the Dev-C++ IDE
 InternalName=
 LegalCopyright=
 LegalTrademarks=
 OriginalFilename=
 ProductName=
-ProductVersion=
+ProductVersion=1.0.0.0
 AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit2]
-FileName=utils.h
+FileName=src\resource.rc
 CompileCpp=0
-Folder=
+Folder=Resources
 Compile=1
-Link=1
+Link=0
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=commandtext.c
+FileName=src\readfile.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -71,7 +71,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1]
-FileName=main.c
+FileName=src\utils.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -81,7 +81,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=exit.c
+FileName=src\exit.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -91,7 +91,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=readfile.c
+FileName=src\createfile.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -101,8 +101,19 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=resource.rc
-Folder=Resources
+FileName=src\commandtext.c
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+CompileCpp=0
+
+[Unit7]
+FileName=main.c
+CompileCpp=0
+Folder=
 Compile=1
 Link=1
 Priority=1000
