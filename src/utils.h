@@ -1,9 +1,23 @@
+/***
+ *                $$\     $$\ $$\           
+ *                $$ |    \__|$$ |          
+ *    $$\   $$\ $$$$$$\   $$\ $$ | $$$$$$$\ 
+ *    $$ |  $$ |\_$$  _|  $$ |$$ |$$  _____|
+ *    $$ |  $$ |  $$ |    $$ |$$ |\$$$$$$\  
+ *    $$ |  $$ |  $$ |$$\ $$ |$$ | \____$$\ 
+ *    \$$$$$$  |  \$$$$  |$$ |$$ |$$$$$$$  |
+ *     \______/    \____/ \__|\__|\_______/ 
+ *                                          
+ *                                          
+ *                                          
+ */
+
 #ifndef UTILS_H
 #define UTILS_H
 
-int command_text ( char [], int );
-int read_file ( char [], int );
-int create_file( char [], int );
+int commandtext ( char [], int );
+int readfile ( char [], int );
+int createfile( char [], int );
 // int Exit ( void );
 
 #endif
