@@ -1,3 +1,17 @@
+/***
+ *                                                                              $$\   $$\                           $$\     
+ *                                                                              $$ |  $$ |                          $$ |    
+ *     $$$$$$$\  $$$$$$\  $$$$$$\$$$$\  $$$$$$\$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$ |$$$$$$\    $$$$$$\  $$\   $$\ $$$$$$\   
+ *    $$  _____|$$  __$$\ $$  _$$  _$$\ $$  _$$  _$$\  \____$$\ $$  __$$\ $$  __$$ |\_$$  _|  $$  __$$\ \$$\ $$  |\_$$  _|  
+ *    $$ /      $$ /  $$ |$$ / $$ / $$ |$$ / $$ / $$ | $$$$$$$ |$$ |  $$ |$$ /  $$ |  $$ |    $$$$$$$$ | \$$$$  /   $$ |    
+ *    $$ |      $$ |  $$ |$$ | $$ | $$ |$$ | $$ | $$ |$$  __$$ |$$ |  $$ |$$ |  $$ |  $$ |$$\ $$   ____| $$  $$<    $$ |$$\ 
+ *    \$$$$$$$\ \$$$$$$  |$$ | $$ | $$ |$$ | $$ | $$ |\$$$$$$$ |$$ |  $$ |\$$$$$$$ |  \$$$$  |\$$$$$$$\ $$  /\$$\   \$$$$  |
+ *     \_______| \______/ \__| \__| \__|\__| \__| \__| \_______|\__|  \__| \_______|   \____/  \_______|\__/  \__|   \____/ 
+ *                                                                                                                          
+ *                                                                                                                          
+ *                                                                                                                          
+ */
+ 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -11,68 +25,61 @@
  * @param cmdtext Comando digitado pelo usuário.
  * @param tam Tamanho do array cmdtext.
  *
- * @return int Retorna 1 se o comando for executado.
+ * @return int Retorna 1 se o comando for executado, caso contrário retorna 0.
  *
  */
-int command_text (char cmdtext[], int tam ) {
-	char *arg = NULL;
+ int
+ commandtext(char cmdtext[], int tam)
+ {
+ 	char *arg = NULL;
 
-	// Remove o "\n" que a função fgets() colocou
-	cmdtext[strcspn(cmdtext, "\n")] = 0;
+ 	// Remove o "\n" que a função fgets() colocou
+ 	cmdtext[strcspn(cmdtext, "\n")] = 0;
 
-	// Separa o argumento do comando (Comando: read; argumento: arquivo.txt)
-	arg = strtok(cmdtext, " ");
+ 	// Separa o argumento do comando 
+ 	arg = strtok(cmdtext, " ");
+	// >ler arquivo.txt
+	// Comando = 'ler'; Argumento = 'arquivo.txt'
 
-	if (strcmp(cmdtext, "ler") == 0) {
-	    
-		int status = 0;
-		arg = strtok(NULL, " ");
+ 	if (strcmp(cmdtext, "ler") == 0)
+ 		{
+ 			int status = 0;
+ 			arg = strtok(NULL, " ");
 
-		status = read_file(arg, strlen(arg));
+ 			status = readfile(arg, sizeof(arg));
 
-		if (status != 0) {
-			if (status == 1) {
-				printf("Digite: ler[nomedoarquivo.txt]\n > ");
-			}
+ 			if (status != 0)
+ 			{
+ 				if (status == 1)
+ 				{
+ 					printf("Digite: ler [nomedoarquivo.txt]");
+ 					printf("\n\n >");
+ 				}
 
-			if (status > 1) {
-				printf("O arquivo '%s' não existe.\n > ", arg);
-			}
-		}
-		return 1;
-	}
-	
-	if (strcmp(cmdtext, "criar") == 0) {
-	    
-		int status = 0;
-		arg = strtok(NULL, " ");
+ 				if (status > 1)
+ 				{
+ 					printf("O arquivo '%s' não existe.", arg);
+ 					printf("\n\n >");
+ 				}
+ 			}
+			// printf("DEBUG: RETURN: %d", status);
+ 			status = 0;
+ 			return 1;
+ 		}
 
-		status = read_file(arg, strlen(arg));
+ 	if (strcmp(cmdtext, "sair") == 0)
+ 	{
+ 		printf("Programa encerrado.\n");
+ 		exit(0);
+ 	}
 
-		if (status != 0) {
-			if (status == 1) {
-				printf("Digite: ler[nomedoarquivo.txt]\n > ");
-			}
+ 	if (strcmp(cmdtext, "limpar") == 0)
+ 	{
+ 		system("cls");
+ 		return 1;
+ 	}
 
-			if (status > 1) {
-				printf("O arquivo '%s' não existe.\n > ", arg);
-			}
-		}
-		return 1;
-	}
-
-	if (strcmp(cmdtext, "sair") == 0) {
-		printf("Programa encerrado.\n");
-		exit(0);
-	}
-
-	if (strcmp(cmdtext, "cls") == 0) {
-		system("cls");
-		return 1;
-	}
-	
-	else {
-		printf("O comando '%s' não existe!", cmdtext);
-		printf("\n\n > ");
-	}
-}
+ 	printf("O comando '%s' não existe!", cmdtext);
+ 	printf("\n\n >");
+ 	return 0;
+ }
