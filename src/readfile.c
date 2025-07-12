@@ -49,11 +49,11 @@ readfile ( char nameFile[], int tam )
 		while ((fileContent = fgetc(file)) != EOF) 
 			{
 				if (fileContent == '\n') 
-				{
-					i++;
-					fileContent = 0;
-					printf("\n\t%d. ", i);			
-				}
+					{
+						i++;
+						fileContent = 0;
+						printf("\n\t%d. ", i);			
+					}
 				putchar(fileContent);
 			}
 
