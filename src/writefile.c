@@ -12,6 +12,9 @@
  *                                                                                
  */
 
+#include <stdio.h>
+#include <string.h>
+
 #include "utils.h"
  
 /**
@@ -26,22 +29,21 @@
 int
 writefile ( char nameFile[], int tam ) 
 {
-	setlocale(LC_ALL, "ptb");
 	FILE *file = fopen(nameFile, "a+");
 	
 	if (nameFile == NULL)
-		{
-			return 1;
-		}
+	{
+		return 1;
+	}
 	
 	if (file == NULL) 
-		{
-			return 2;
-		}
+	{
+		return 2;
+	}
 	
 	printf("\n");	
 	
-	printcf(nameFile, sizeof(nameFile));
+	fprintc(nameFile, sizeof(nameFile));
 	
 	printf("\n");
 	
@@ -66,15 +68,15 @@ writefile ( char nameFile[], int tam )
 	} while (option == 3);
 	
 	if (option == 1) 
-		{
-			fclose(file);
+	{
+		fclose(file);
 
-			printf("Conteúdo modificado:"); 
-			fileContent[strcspn(fileContent, "\n")] = 0;
-			printf("\e[92;1m \"%s\" \e[0m\n", fileContent);
+		printf("Conteúdo modificado:"); 
+		fileContent[strcspn(fileContent, "\n")] = 0;
+		printf("\e[92;1m \"%s\" \e[0m\n", fileContent);
 	
-			printf("\e[92;1mMudanças feitas em: \"%s\" \e[0m\n\n", nameFile);
-		}
+		printf("\e[92;1mMudanças feitas em: \"%s\" \e[0m\n\n", nameFile);
+	}
 	
 	printf("\n");
 	system("cd");
