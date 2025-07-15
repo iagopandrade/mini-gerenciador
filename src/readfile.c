@@ -58,38 +58,3 @@ readfile ( char nameFile[], int tam )
 	
 	return 0;
 }
-
-void
-fprintc(char nameFile[], int tam) 
-{
-	FILE *file = fopen(nameFile, "r");
-	char ch;
-	while ((ch = fgetc(file)) != EOF) 
-	{
-		putchar(ch);
-	}
-	fclose(file);
-}
-
-int
-getoption()
-{
-    char option[50];
-
-    if (fgets(option, sizeof(option), stdin) == NULL)
-	{
-        return 3;
-    }
-
-    if (option[0] == '\n' || option[0] == '\0')
-	{
-        return 3;
-    }
-
-    switch (option[0])
-    {
-        case 's': return 1;
-        case 'N': return 2;
-        default:  return 3;
-    }
-}
