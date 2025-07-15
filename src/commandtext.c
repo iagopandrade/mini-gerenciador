@@ -12,6 +12,10 @@
  *                                                                                                                          
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "utils.h"
 
 /**
@@ -30,13 +34,13 @@ commandtext(char cmdtext[], int tam)
  {
  	char *arg = NULL;
 
- 	// Remove o "\n" que a função fgets() colocou
+ 	// Remove o "\n" do ENTER
  	cmdtext[strcspn(cmdtext, "\n")] = 0;
 
  	// Separa o argumento do comando 
  	arg = strtok(cmdtext, " ");
 	// > ler arquivo.txt
-	// Comando = 'ler'; Argumento = 'arquivo.txt'
+	// Comando = "ler"; Argumento = "arquivo.txt"
 
  	if (strcmp(cmdtext, "ler") == 0)
  		{

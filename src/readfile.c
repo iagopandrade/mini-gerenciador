@@ -12,6 +12,10 @@
  *                                                                        
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "utils.h"
 
 /**
@@ -42,7 +46,7 @@ readfile ( char nameFile[], int tam )
 		printf("\e[1;93mTiaNFM\e[0m: Modo de leitura\n");
 		printf("Arquivo '%s'\n\n", nameFile);
 		
-		printcf(nameFile, sizeof(nameFile));
+		fprintc(nameFile, sizeof(nameFile));
 
 		fclose(file);
 
@@ -56,30 +60,36 @@ readfile ( char nameFile[], int tam )
 }
 
 void
-printcf(char nameFile[], int tam) 
+fprintc(char nameFile[], int tam) 
 {
 	FILE *file = fopen(nameFile, "r");
 	char ch;
 	while ((ch = fgetc(file)) != EOF) 
-		{
-			putchar(ch);
-		}
+	{
+		putchar(ch);
+	}
 	fclose(file);
 }
 
 int
 getoption()
 {
-	char option;
-	scanf(" %c", &option);
-	
-    int ch;
-    while ((ch = getchar()) != '\n' && ch != EOF);	
+    char option[50];
 
-	switch(option)
-		{
-			case 's': return 1;
-			case 'N': return 2;
-			default: return 3;
-		}
+    if (fgets(option, sizeof(option), stdin) == NULL)
+	{
+        return 3;
+    }
+
+    if (option[0] == '\n' || option[0] == '\0')
+	{
+        return 3;
+    }
+
+    switch (option[0])
+    {
+        case 's': return 1;
+        case 'N': return 2;
+        default:  return 3;
+    }
 }
