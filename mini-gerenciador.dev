@@ -80,18 +80,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit4]
-FileName=src\exit.c
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit5]
-FileName=src\createfile.c
+FileName=src\commandtext.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -101,7 +91,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=src\commandtext.c
+FileName=main.c
 Folder=
 Compile=1
 Link=1
@@ -111,7 +101,27 @@ BuildCmd=
 CompileCpp=0
 
 [Unit7]
-FileName=main.c
+FileName=src\writefile.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit8]
+FileName=src\writefile.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit4]
+FileName=src\createfile.c
 CompileCpp=0
 Folder=
 Compile=1

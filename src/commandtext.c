@@ -11,10 +11,7 @@
  *                                                                                                                          
  *                                                                                                                          
  */
- 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+
 #include "utils.h"
 
 /**
@@ -28,8 +25,8 @@
  * @return int Retorna 1 se o comando for executado, caso contrário retorna 0.
  *
  */
- int
- commandtext(char cmdtext[], int tam)
+int
+commandtext(char cmdtext[], int tam)
  {
  	char *arg = NULL;
 
@@ -38,48 +35,110 @@
 
  	// Separa o argumento do comando 
  	arg = strtok(cmdtext, " ");
-	// >ler arquivo.txt
+	// > ler arquivo.txt
 	// Comando = 'ler'; Argumento = 'arquivo.txt'
 
  	if (strcmp(cmdtext, "ler") == 0)
  		{
- 			int status = 0;
+ 			int ret = 0;
  			arg = strtok(NULL, " ");
 
- 			status = readfile(arg, sizeof(arg));
+ 			ret = readfile(arg, sizeof(arg));
 
- 			if (status != 0)
+ 			if (ret != 0)
  			{
- 				if (status == 1)
+ 				if (ret == 1)
  				{
- 					printf("Digite: ler [nomedoarquivo.txt]");
- 					printf("\n\n >");
+ 					printf("   \e[92;1mler \e[0m <\e[31;1mnomedoarquivo.txt\e[0m>\n");
+ 					printf("\e[31;1mERRO: Nome de arquivo não informado!\e[0m\n");
+ 					printf("\n\n");
+					system("cd");
+					printf("\e[1;93m > \e[0m"); 
  				}
 
- 				if (status > 1)
+ 				if (ret > 1)
  				{
- 					printf("O arquivo '%s' não existe.", arg);
- 					printf("\n\n >");
+ 					printf("O arquivo \"\e[31;1m%s\e[0m\" não foi encontrado.\n", arg);
+ 					printf("\n");
+					system("cd");
+					printf("\e[1;93m > \e[0m");
  				}
  			}
-			// printf("DEBUG: RETURN: %d", status);
- 			status = 0;
+ 			ret = 0;
+ 			return 1;
+ 		}
+
+ 	if (strcmp(cmdtext, "editar") == 0)
+ 		{
+ 			int ret = 0;
+ 			arg = strtok(NULL, " ");
+
+ 			ret = writefile(arg, sizeof(arg));
+
+ 			if (ret != 0)
+ 			{
+ 				if (ret == 1)
+ 				{
+ 					printf("    \e[92;1meditar\e[0m <\e[31;1mnomedoarquivo.txt\e[0m>\n");
+ 					printf("\n");
+					system("cd");
+					printf("\e[1;93m > \e[0m");
+ 				}
+
+ 				if (ret > 1)
+ 				{
+ 					printf("O arquivo \"\e[31;1m%s\e[0m\" não foi encontrado.\n", arg);
+ 					printf("\n");
+					system("cd");
+					printf("\e[1;93m > \e[0m");				
+				}
+ 			}
+ 			ret = 0;
  			return 1;
  		}
 
  	if (strcmp(cmdtext, "sair") == 0)
+ 		{
+ 			printf("Programa encerrado.\n");
+ 			exit(0);
+ 		}
+
+	
+	/***
+ 	*                                    $$\                                                      $$\ $$\           
+ 	*                                    $$ |                                                     $$ |$$ |          
+ 	*     $$$$$$$\ $$\   $$\  $$$$$$$\ $$$$$$\    $$$$$$\  $$$$$$\$$$$\         $$$$$$$\ $$$$$$\  $$ |$$ | $$$$$$$\ 
+ 	*    $$  _____|$$ |  $$ |$$  _____|\_$$  _|  $$  __$$\ $$  _$$  _$$\       $$  _____|\____$$\ $$ |$$ |$$  _____|
+ 	*    \$$$$$$\  $$ |  $$ |\$$$$$$\    $$ |    $$$$$$$$ |$$ / $$ / $$ |      $$ /      $$$$$$$ |$$ |$$ |\$$$$$$\  
+ 	*     \____$$\ $$ |  $$ | \____$$\   $$ |$$\ $$   ____|$$ | $$ | $$ |      $$ |     $$  __$$ |$$ |$$ | \____$$\ 
+ 	*    $$$$$$$  |\$$$$$$$ |$$$$$$$  |  \$$$$  |\$$$$$$$\ $$ | $$ | $$ |      \$$$$$$$\\$$$$$$$ |$$ |$$ |$$$$$$$  |
+ 	*    \_______/  \____$$ |\_______/    \____/  \_______|\__| \__| \__|       \_______|\_______|\__|\__|\_______/ 
+ 	*              $$\   $$ |                                                                                       
+ 	*              \$$$$$$  |                                                                                       
+ 	*               \______/                                                                                        
+ 	*/
+
+ 	if (strcmp(cmdtext, "listar") == 0)
  	{
- 		printf("Programa encerrado.\n");
- 		exit(0);
- 	}
+ 		system("dir");
+ 		printf("\n");
+		system("cd");
+		printf("  > ");
+ 		return 1;
+ 	}	
 
  	if (strcmp(cmdtext, "limpar") == 0)
  	{
  		system("cls");
+ 		printf("\n");
+		system("cd");
+		printf("  > ");
  		return 1;
  	}
 
- 	printf("O comando '%s' não existe!", cmdtext);
- 	printf("\n\n >");
+ 	printf("  \"\e[31;1m%s\e[0m\": comando não encontrado.\n", cmdtext);
+ 	printf("\n");
+	system("cd");
+	printf("\e[1;93m > \e[0m");
  	return 0;
  }

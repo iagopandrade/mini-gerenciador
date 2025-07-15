@@ -11,9 +11,7 @@
  *                                                                        
  *                                                                        
  */
- 
-#include <stdio.h>
-#include <string.h>
+
 #include "utils.h"
 
 /**
@@ -39,30 +37,49 @@ readfile ( char nameFile[], int tam )
 	else 
 	{
 		char fileContent;
-		
+		system("cd");
 		printf("\n");
-		printf("Arquivo '%s'\n", nameFile);
-		printf("\t-----------------------\n");
-		int i = 1;
-		printf("\t%d. ", i);
+		printf("\e[1;93mTiaNFM\e[0m: Modo de leitura\n");
+		printf("Arquivo '%s'\n\n", nameFile);
 		
-		while ((fileContent = fgetc(file)) != EOF) 
-			{
-				if (fileContent == '\n') 
-					{
-						i++;
-						fileContent = 0;
-						printf("\n\t%d. ", i);			
-					}
-				putchar(fileContent);
-			}
+		printcf(nameFile, sizeof(nameFile));
 
 		fclose(file);
 
-		printf("\n\t-------------------\n");
-		printf("%d linhas\n", i); i = 0;
-		printf("Arquivo '%s' foi fechado", nameFile);
-		printf("\n\n >");
+		printf("Arquivo '%s' foi fechado\n", nameFile);
+ 		printf("\n");
+		system("cd");
+		printf("\e[1;93m > \e[0m");
 	}
+	
 	return 0;
+}
+
+void
+printcf(char nameFile[], int tam) 
+{
+	FILE *file = fopen(nameFile, "r");
+	char ch;
+	while ((ch = fgetc(file)) != EOF) 
+		{
+			putchar(ch);
+		}
+	fclose(file);
+}
+
+int
+getoption()
+{
+	char option;
+	scanf(" %c", &option);
+	
+    int ch;
+    while ((ch = getchar()) != '\n' && ch != EOF);	
+
+	switch(option)
+		{
+			case 's': return 1;
+			case 'N': return 2;
+			default: return 3;
+		}
 }
