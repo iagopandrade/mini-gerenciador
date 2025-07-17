@@ -1,0 +1,8 @@
+/** 
+ * Ícone do programa.
+ *
+ * Fiz esse ícone manualmente usando:
+ * https://www.piskelapp.com/p/create/sprite/
+ *
+ */
+IDI_ICON1 ICON "resources/minigerenciador.ico"
