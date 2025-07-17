@@ -31,13 +31,13 @@ int
 readfile ( char nameFile[], int tam ) 
 {
 	FILE *file = fopen(nameFile, "r");
-	
+
 	if (nameFile == NULL)
 		return 1;
-	
+
 	if (file == NULL) 
 		return 2;
-		
+
 	else 
 	{
 		char fileContent;
@@ -45,7 +45,7 @@ readfile ( char nameFile[], int tam )
 		printf("\n");
 		printf("\e[1;93mTiaNFM\e[0m: Modo de leitura\n");
 		printf("Arquivo '%s'\n\n", nameFile);
-		
+
 		fprintc(nameFile, sizeof(nameFile));
 
 		fclose(file);
@@ -55,6 +55,5 @@ readfile ( char nameFile[], int tam )
 		system("cd");
 		printf("\e[1;93m > \e[0m");
 	}
-	
 	return 0;
 }

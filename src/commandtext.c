@@ -31,8 +31,8 @@
  */
 int
 commandtext(char cmdtext[], int tam)
- {
- 	char *arg = NULL;
+{
+	char *arg = NULL;
 
  	// Remove o "\n" do ENTER
  	cmdtext[strcspn(cmdtext, "\n")] = 0;
@@ -127,7 +127,7 @@ commandtext(char cmdtext[], int tam)
  		system("dir");
  		printf("\n");
 		system("cd");
-		printf("  > ");
+		printf("\e[1;93m > \e[0m");
  		return 1;
  	}	
 
@@ -136,7 +136,7 @@ commandtext(char cmdtext[], int tam)
  		system("cls");
  		printf("\n");
 		system("cd");
-		printf("  > ");
+		printf("\e[1;93m > \e[0m");
  		return 1;
  	}
 
@@ -145,4 +145,4 @@ commandtext(char cmdtext[], int tam)
 	system("cd");
 	printf("\e[1;93m > \e[0m");
  	return 0;
- }
+}

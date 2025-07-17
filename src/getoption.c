@@ -1,4 +1,3 @@
-
 /***
  *                           /$$                           /$$     /$$                    
  *                          | $$                          | $$    |__/                    
@@ -20,30 +19,18 @@
 #include "utils.h"
 
 /**
- * @brief Ler a escolha de uma opção.
+ * @brief Retornar um caractere.
  *
- * @return int Retorna 1 caso receba 's', 2 caso'N', 3 caso contrário.
+ * @return char Retorna o caractere digitado.
  *
  */
-int
+char
 getoption()
 {
-    char option[50];
+	char option[50];
 
-    if (fgets(option, sizeof(option), stdin) == NULL)
-	{
-        return 3;
-    }
-				
-    if (option[0] == '\n' || option[0] == '\0')
-	{
-        return 3;
-    }
-     
-    switch (option[0])
-    {
-        case 's': return 1;
-        case 'N': return 2;
-        default: return 3;
-    }
+	setbuf(stdin, NULL); 
+    fgets(option, sizeof(option), stdin);
+
+    return option[0];
 }

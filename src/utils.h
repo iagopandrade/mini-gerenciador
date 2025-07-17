@@ -19,6 +19,6 @@ int commandtext ( char [], int );
 int readfile ( char [], int );
 int writefile( char [], int );
 void fprintc( char[], int );
-int getoption();
+char getoption();
 
 #endif
