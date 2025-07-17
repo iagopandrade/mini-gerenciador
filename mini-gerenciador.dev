@@ -81,7 +81,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=src\commandtext.c
+FileName=main.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -91,7 +91,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=main.c
+FileName=src\writefile.c
 Folder=
 Compile=1
 Link=1
@@ -101,16 +101,6 @@ BuildCmd=
 CompileCpp=0
 
 [Unit7]
-FileName=src\writefile.c
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit8]
 FileName=src\fprintc.c
 CompileCpp=0
 Folder=
@@ -120,8 +110,28 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+[Unit8]
+FileName=src\getoption.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit9]
+FileName=src\getoption.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
 [Unit4]
-FileName=src\createfile.c
+FileName=src\commandtext.c
 CompileCpp=0
 Folder=
 Compile=1
