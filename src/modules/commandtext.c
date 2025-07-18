@@ -23,89 +23,86 @@
  *
  * Esta função compara uma string com um comando interno.
  *
- * @param cmdtext Comando digitado pelo usuário.
- * @param tam Tamanho do array cmdtext.
+ * @param cmd_text Comando digitado pelo usuário.
+ * @param tam Tamanho do array cmd_text.
  *
  * @return int Retorna 1 se o comando for executado, caso contrário retorna 0.
  *
  */
+
 int
-commandtext(char cmdtext[], int tam)
+command_text( char cmd_text[], int tam )
 {
-	char *arg = NULL;
+	// Remove o "\n" do ENTER
+ 	cmd_text[strcspn(cmd_text, "\n")] = 0;
+ 	
+	// Separa os argumentos.
+	char *arg = strtok(cmd_text, " ");
+	//	Por exemplo, se o usuário digitar a string: "ler comando"
+	// 	A função retorna o endereço de array até um delimitador (Nesse caso, um espaço branco: " ").
+	//	Ou seja, [arg] passa a valer: "ler". 
+	//	Se a função for chamada novamente, o retorno será o próximo argumento: "comando".
+	 
+ 	if (strcmp(cmd_text, "ler") == 0)
+ 	{
+ 		arg = strtok(NULL, " ");
+		
+ 		int ret = read_file(arg, sizeof(arg));
 
- 	// Remove o "\n" do ENTER
- 	cmdtext[strcspn(cmdtext, "\n")] = 0;
-
- 	// Separa o argumento do comando 
- 	arg = strtok(cmdtext, " ");
-	// > ler arquivo.txt
-	// Comando = "ler"; Argumento = "arquivo.txt"
-
- 	if (strcmp(cmdtext, "ler") == 0)
+ 		if (ret != 0)
  		{
- 			int ret = 0;
- 			arg = strtok(NULL, " ");
-
- 			ret = readfile(arg, sizeof(arg));
-
- 			if (ret != 0)
+ 			if (ret == 1)
  			{
- 				if (ret == 1)
- 				{
- 					printf("   \e[92;1mler \e[0m <\e[31;1mnomedoarquivo.txt\e[0m>\n");
- 					printf("\e[31;1mERRO: Nome de arquivo não informado!\e[0m\n");
- 					printf("\n\n");
-					system("cd");
-					printf("\e[1;93m > \e[0m"); 
- 				}
-
- 				if (ret > 1)
- 				{
- 					printf("O arquivo \"\e[31;1m%s\e[0m\" não foi encontrado.\n", arg);
- 					printf("\n");
-					system("cd");
-					printf("\e[1;93m > \e[0m");
- 				}
+ 				printf("   \e[92;1mler \e[0m <\e[31;1mnomedoarquivo.txt\e[0m>\n");
+ 				printf("\e[31;1mERRO: Nome de arquivo não informado!\e[0m\n");
+ 				printf("\n\n");
+				system("cd");
+				printf("\e[1;93m > \e[0m"); 
  			}
- 			ret = 0;
- 			return 1;
- 		}
 
- 	if (strcmp(cmdtext, "editar") == 0)
- 		{
- 			int ret = 0;
- 			arg = strtok(NULL, " ");
-
- 			ret = writefile(arg, sizeof(arg));
-
- 			if (ret != 0)
+ 			if (ret > 1)
  			{
- 				if (ret == 1)
- 				{
- 					printf("    \e[92;1meditar\e[0m <\e[31;1mnomedoarquivo.txt\e[0m>\n");
- 					printf("\n");
-					system("cd");
-					printf("\e[1;93m > \e[0m");
- 				}
-
- 				if (ret > 1)
- 				{
- 					printf("O arquivo \"\e[31;1m%s\e[0m\" não foi encontrado.\n", arg);
- 					printf("\n");
-					system("cd");
-					printf("\e[1;93m > \e[0m");				
-				}
+ 				printf("O arquivo \"\e[31;1m%s\e[0m\" não foi encontrado.\n", arg);
+ 				printf("\n");
+				system("cd");
+				printf("\e[1;93m > \e[0m");
  			}
- 			ret = 0;
- 			return 1;
  		}
+ 		return 1;
+ 	}
 
- 	if (strcmp(cmdtext, "sair") == 0)
+ 	if (strcmp(cmd_text, "editar") == 0)
+ 	{
+ 		arg = strtok(NULL, " ");
+
+ 		int ret = write_file(arg, sizeof(arg));
+
+ 		if (ret != 0)
  		{
- 			printf("Programa encerrado.\n");
- 			exit(0);
+ 			if (ret == 1)
+ 			{
+ 				printf("   \e[92;1meditar\e[0m <\e[31;1mnomedoarquivo.txt\e[0m>\n");
+ 				printf("\n");
+				system("cd");
+				printf("\e[1;93m > \e[0m");
+ 			}
+
+ 			if (ret > 1)
+ 			{
+ 				printf("O arquivo \"\e[31;1m%s\e[0m\" não foi encontrado.\n", arg);
+ 				printf("\n");
+				system("cd");
+				printf("\e[1;93m > \e[0m");				
+			}
  		}
+ 		return 1;
+ 	}
+
+ 	if (strcmp(cmd_text, "sair") == 0)
+ 	{
+ 		printf("Programa encerrado.\n");
+ 		exit(0);
+ 	}
 
 	
 	/***
@@ -122,7 +119,7 @@ commandtext(char cmdtext[], int tam)
  	*               \______/                                                                                        
  	*/
 
- 	if (strcmp(cmdtext, "listar") == 0)
+ 	if (strcmp(cmd_text, "listar") == 0)
  	{
  		system("dir");
  		printf("\n");
@@ -131,7 +128,7 @@ commandtext(char cmdtext[], int tam)
  		return 1;
  	}	
 
- 	if (strcmp(cmdtext, "limpar") == 0)
+ 	if (strcmp(cmd_text, "limpar") == 0)
  	{
  		system("cls");
  		printf("\n");
@@ -140,9 +137,9 @@ commandtext(char cmdtext[], int tam)
  		return 1;
  	}
 
- 	printf("  \"\e[31;1m%s\e[0m\": comando não encontrado.\n", cmdtext);
+ 	printf("  \"\e[31;1m%s\e[0m\": comando não encontrado.\n", cmd_text);
  	printf("\n");
 	system("cd");
 	printf("\e[1;93m > \e[0m");
- 	return 0;
+	return 0;
 }

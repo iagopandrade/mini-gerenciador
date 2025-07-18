@@ -25,7 +25,7 @@
  *
  */
 char
-getoption()
+get_option()
 {
 	char option[50];
 
@@ -36,9 +36,9 @@ getoption()
 }
 
 void
-fprintc(char nameFile[], int tam) 
+fprintc(char file_name[], int tam) 
 {
-	FILE *file = fopen(nameFile, "r");
+	FILE *file = fopen(file_name, "r");
 	char ch;
 	while ((ch = fgetc(file)) != EOF) 
 	{

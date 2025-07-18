@@ -1,7 +1,10 @@
 ### Funções
 ```c
-int commandtext ( char cmdtext[], int tam)
-int readfile ( char nameFile[], int tam ) 
+int commandtext ( char cmd_text[], int tam );
+int readfile ( char file_name[], int tam );
+int writefile( char file_name[], int tam );
+void fprintc( char file_name[], int tam );
+char getoption();
 ```
 
 ### Estilo de código 
@@ -37,4 +40,3 @@ int readfile ( char nameFile[], int tam )
  *                                          
  *                                          
  */
-```

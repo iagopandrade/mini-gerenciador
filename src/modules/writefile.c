@@ -20,18 +20,18 @@
 /**
  * @brief Escreve em um arquivo.
  *
- * @param nameFile Nome do arquivo.
- * @param tam Tamanho do array nameFile.
+ * @param file_name Nome do arquivo.
+ * @param tam Tamanho do array file_name.
  *
  * @return int Retorna 1 se não receber parâmetro, 2 caso o parâmetro seja inválido.
  *
  */
 int
-writefile ( char nameFile[], int tam ) 
+write_file ( char file_name[], int tam ) 
 {
-	FILE *file = fopen(nameFile, "a+");
+	FILE *file = fopen(file_name, "a+");
 
-	if (nameFile == NULL)
+	if (file_name == NULL)
 	{
 		return 1;
 	}
@@ -43,27 +43,27 @@ writefile ( char nameFile[], int tam )
 
 	printf("\n");	
 
-	fprintc(nameFile, sizeof(nameFile));
+	fprintc(file_name, sizeof(file_name));
 
 	printf("\n");
 
 	printf("\e[1;93mTiaNFM\e[0m: Modo de edição\n");
 	printf("Adicionar ao arquivo:\n");
 	printf("\e[1;93m > \e[0m");	
-	char fileContent[100];
+	char file_content[100];
 
 	// Limpa o buffer do teclado
 	setbuf(stdin, NULL);
-	fgets(fileContent, sizeof(fileContent), stdin);
-	fileContent[strcspn(fileContent, "\n")] = 0;
-	fprintf(file, "%s", fileContent);
+	fgets(file_content, sizeof(file_content), stdin);
+	file_content[strcspn(file_content, "\n")] = 0;
+	fprintf(file, "%s", file_content);
 
 	char option;
 	do
 	{
 		printf("\n");
 		printf("Você deseja salvar as alterações? (s/N) ");	
-		option = getoption();
+		option = get_option();
 
 	} while (option != 's' && option != 'N');
 
@@ -72,10 +72,10 @@ writefile ( char nameFile[], int tam )
 		fclose(file);
 
 		printf("Conteúdo modificado:"); 
-		fileContent[strcspn(fileContent, "\n")] = 0;
-		printf("\e[92;1m \"%s\" \e[0m\n", fileContent);
+		file_content[strcspn(file_content, "\n")] = 0;
+		printf("\e[92;1m \"%s\" \e[0m\n", file_content);
 
-		printf("\e[92;1mMudanças feitas em: \"%s\" \e[0m\n\n", nameFile);
+		printf("\e[92;1mMudanças feitas em: \"%s\" \e[0m\n\n", file_name);
 	}
 	else
 	{

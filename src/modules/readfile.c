@@ -21,18 +21,18 @@
 /**
  * @brief Ler um arquivo.
  *
- * @param nameFile Nome do arquivo.
- * @param tam Tamanho do array nameFile.
+ * @param file_name Nome do arquivo.
+ * @param tam Tamanho do array file_name.
  *
  * @return int Retorna 1 se não receber parâmetro, 2 caso o parâmetro seja inválido.
  *
  */
 int
-readfile ( char nameFile[], int tam ) 
+read_file ( char file_name[], int tam ) 
 {
-	FILE *file = fopen(nameFile, "r");
+	FILE *file = fopen(file_name, "r");
 
-	if (nameFile == NULL)
+	if (file_name == NULL)
 		return 1;
 
 	if (file == NULL) 
@@ -40,17 +40,17 @@ readfile ( char nameFile[], int tam )
 
 	else 
 	{
-		char fileContent;
+		//char file_content;
 		system("cd");
 		printf("\n");
 		printf("\e[1;93mTiaNFM\e[0m: Modo de leitura\n");
-		printf("Arquivo '%s'\n\n", nameFile);
+		printf("Arquivo '%s'\n\n", file_name);
 
-		fprintc(nameFile, sizeof(nameFile));
+		fprintc(file_name, sizeof(file_name));
 
 		fclose(file);
 
-		printf("Arquivo '%s' foi fechado\n", nameFile);
+		printf("Arquivo '%s' foi fechado\n", file_name);
  		printf("\n");
 		system("cd");
 		printf("\e[1;93m > \e[0m");

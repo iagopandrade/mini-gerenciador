@@ -1,12 +1,10 @@
-
-
 #ifndef MINIMANAGER_H
 #define MINIMANAGER_H
 
-int commandtext ( char [], int );
-int readfile ( char [], int );
-int writefile( char [], int );
-void fprintc( char[], int );
-char getoption();
+int command_text ( char cmd_text[], int tam );
+int read_file ( char file_name[], int tam );
+int write_file( char file_name[], int tam );
+void fprintc( char file_name[], int tam );
+char get_option();
 
 #endif

@@ -41,20 +41,16 @@ int main(void)
 	printf("\n");
 	system("cd");
 	printf("\e[1;93m > \e[0m");
-	// Cria um laço infinito, saindo apenas com o comando 'sair'
+	// Cria um laço infinito, saindo apenas com o comando "sair"
 	while (1) 
 	{
-		char cmd[50];
+		char input[50];
 
 		// Limpa o buffer do teclado
 		setbuf(stdin, NULL);
-		fgets(cmd, sizeof(cmd), stdin);
+		fgets(input, sizeof(input), stdin);
 
-		commandtext(cmd, sizeof(cmd));
-
-		int i;
-		for (i = 50; i > 0; i--)
-		cmd[i] = 0;
+		command_text(input, sizeof(input));
 	}
 	return 0;
 }
