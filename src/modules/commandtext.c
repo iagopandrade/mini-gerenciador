@@ -63,7 +63,7 @@ command_text( char cmd_text[], int tam )
 
  	if (strcmp(cmd_text, "editar") == 0)
  	{
- 		arg = strtok(NULL, " ");
+		arg = strtok(NULL, " ");
 
  		int ret = write_file(arg, sizeof(arg));
 
@@ -80,6 +80,33 @@ command_text( char cmd_text[], int tam )
 			}
  		}
  		return 1;
+ 	}
+		
+ 	if (strcmp(cmd_text, "renomear") == 0)
+ 	{
+ 		char *old_file_name = strtok(NULL, " ");
+ 		char *new_file_name = strtok(NULL, " ");
+ 		char *MAX_ARGUMENTS = strtok(NULL, " ");
+ 		
+ 		if ( MAX_ARGUMENTS != NULL )
+		{
+			perror("Syntax errada.\nMais de 2 argumentos");
+//			return -1;
+		} 		
+ 		
+ 		if (old_file_name == NULL || new_file_name == NULL)
+		{
+			perror("Syntax errada");
+//			return -1;
+		}
+ 		else
+ 		{
+	 		if( rename(old_file_name, new_file_name) == 0)
+	 			printf("%s renomeado para %s\n", old_file_name, new_file_name);
+	 		else
+	 			perror("Erro ao renomear o arquivo");
+	 	}
+	 	return 1;
  	}
 
  	if (strcmp(cmd_text, "sair") == 0)

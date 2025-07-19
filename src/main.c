@@ -52,8 +52,6 @@ int main( void )
 		printf("\e[1;93m > \e[0m");
 		
 		char input[50];
-//		Limpa o buffer do teclado
-		setbuf(stdin, NULL);
 		fgets(input, sizeof(input), stdin);
 		
 //		Remove o "\n" do ENTER
@@ -68,11 +66,13 @@ int main( void )
 		{
 			if( command_text(input, sizeof(input)) == 1)
 			{
-				printf("Comando executado com sucesso!");
+//				void
+//				printf("Comando executado com sucesso!\n");
 			}
 			else
 			{
 				printf("  \"\e[31;1m%s\e[0m\": comando não encontrado.\n", input);
+//				printf("  %s: comando não encontrado.\n", input);
 			}	
 		}
 	}
