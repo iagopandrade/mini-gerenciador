@@ -33,14 +33,18 @@ read_file ( char file_name[], int tam )
 	FILE *file = fopen(file_name, "r");
 
 	if (file_name == NULL)
+	{
 		return 1;
+	}
 
 	if (file == NULL) 
+	{
 		return 2;
+	}
 
 	else 
 	{
-		//char file_content;
+//		char file_content;
 		system("cd");
 		printf("\n");
 		printf("\e[1;93mTiaNFM\e[0m: Modo de leitura\n");
@@ -51,9 +55,6 @@ read_file ( char file_name[], int tam )
 		fclose(file);
 
 		printf("Arquivo '%s' foi fechado\n", file_name);
- 		printf("\n");
-		system("cd");
-		printf("\e[1;93m > \e[0m");
 	}
 	return 0;
 }

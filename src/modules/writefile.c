@@ -52,7 +52,7 @@ write_file ( char file_name[], int tam )
 	printf("\e[1;93m > \e[0m");	
 	char file_content[100];
 
-	// Limpa o buffer do teclado
+//	Limpa o buffer do teclado
 	setbuf(stdin, NULL);
 	fgets(file_content, sizeof(file_content), stdin);
 	file_content[strcspn(file_content, "\n")] = 0;
@@ -81,8 +81,5 @@ write_file ( char file_name[], int tam )
 	{
 		printf("Alteração cancelada.\n");
 	}
-	printf("\n");
-	system("cd");
-	printf("\e[1;93m > \e[0m");
 	return 0;
 }

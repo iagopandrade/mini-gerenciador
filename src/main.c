@@ -19,7 +19,7 @@
 
 #include "include/minimanager.h"
 
-int main(void)
+int main( void )
 {
 	setlocale(LC_ALL, "ptb");
 
@@ -32,25 +32,49 @@ int main(void)
 	printf("\t-------------------------------------\n");
 	printf("\n");
 
-	printf(" - ler  \tExibe o conteúdo de um arquivo.\n");
+	printf(" - * Em Desenvolvimento\n");
 	printf(" - limpar\tLimpa a tela.\n");
-	printf(" - listar\tLista os diretórios locais.\n");
-	printf(" - sair \tEncerra o programa.\n");
-	printf(" - editar\n\n");
+	printf(" - sair \tEncerra o programa.\n\n");
 
-	printf("\n");
-	system("cd");
-	printf("\e[1;93m > \e[0m");
-	// Cria um laço infinito, saindo apenas com o comando "sair"
+	printf("Arquivos e Diretórios\n\n");
+	printf(" - * criar\tCria diretórios e arquivos.\n");
+	printf(" - editar\tModifica o contéudo de um arquivo.\n");
+	printf(" - ler  \tExibe o conteúdo de um arquivo.\n");
+	printf(" - listar\tLista os diretórios locais.\n");
+	printf(" - * remover\tRemove diretórios e arquivos\n");
+	printf(" - * renomear\tModifica o nome de diretórios e arquivos.\n\n");
+
+//	Cria um laço infinito, saindo apenas com o comando "sair"
 	while (1) 
 	{
+//		printf("\n");
+		system("cd");
+		printf("\e[1;93m > \e[0m");
+		
 		char input[50];
-
-		// Limpa o buffer do teclado
+//		Limpa o buffer do teclado
 		setbuf(stdin, NULL);
 		fgets(input, sizeof(input), stdin);
-
-		command_text(input, sizeof(input));
+		
+//		Remove o "\n" do ENTER
+	 	input[strcspn(input, "\n")] = 0;
+	 	
+		if (strlen(input) == 0) 
+		{
+//			void
+//			i++ Condição para forçar uma ação: exibir um aviso, aplicar delay, encerrar o programa, etc
+		}
+		else
+		{
+			if( command_text(input, sizeof(input)) == 1)
+			{
+				printf("Comando executado com sucesso!");
+			}
+			else
+			{
+				printf("  \"\e[31;1m%s\e[0m\": comando não encontrado.\n", input);
+			}	
+		}
 	}
 	return 0;
 }
